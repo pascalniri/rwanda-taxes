@@ -2,6 +2,8 @@ export * from './types';
 export * from './paye';
 export * from './salary';
 export * from './wht';
+export * from './info';
+export * from './fetch';
 
 // VAT Helpers
 export const VAT_RATE_RW = 0.18;
