@@ -1,25 +1,55 @@
+export interface TaxRateUnit {
+  type: 'percent' | 'base_amount' | 'custom';
+  value: string | number;
+}
+
+export interface TaxDefinition {
+  name: string;
+  type: string;
+  rate: string | number;
+  unit: 'percent' | 'amount' | 'variable';
+  description?: string;
+  authority?: string;
+  bands?: {
+    min: number;
+    max: number | null;
+    rate: number;
+    label?: string;
+  }[];
+}
+
+export interface CountryInfo {
+  name: string;
+  code: string;
+  currency: string;
+  continent: string;
+  essentialInfo: {
+    fiscalYear: string;
+    taxAuthority: string;
+    filingDeadline: string;
+  };
+  taxes: TaxDefinition[];
+}
+
+export interface GlobalTaxConfig {
+  countries: CountryInfo[];
+  meta: {
+    lastUpdated: string;
+    version: string;
+  };
+}
+
+// Keep legacy types for backward compatibility where possible
 export interface TaxBands {
   min: number;
   max: number | null;
   rate: number;
 }
 
-export interface SalaryBreakdown {
-  grossSalary: number;
-  rssbEmployee: number;
-  rssbEmployer: number;
-  maternityEmployee: number;
-  maternityEmployer: number;
-  taxableIncome: number;
-  paye: number;
-  netSalary: number;
-  totalEmployerCost: number;
-}
-
 export interface TaxConfig {
   payeBands: TaxBands[];
-  rssbRate: number; // 0.03 for 3%
-  maternityRate: number; // 0.003 for 0.3%
+  rssbRate: number;
+  maternityRate: number;
 }
 
 export const DEFAULT_TAX_CONFIG_2024: TaxConfig = {

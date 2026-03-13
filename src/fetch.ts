@@ -1,19 +1,17 @@
-import { TaxConfig, DEFAULT_TAX_CONFIG_2024 } from './types';
+import { GlobalTaxConfig } from './types';
 const REMOTE_RATES_URL = 'https://raw.githubusercontent.com/pascalniri/rwanda-taxes/main/rates.json';
 
 /**
- * Fetches the latest tax configurations from the central GitHub repository.
- * Falls back to built-in 2024 config if the fetch fails.
- * @returns The latest tax configuration
+ * Fetches the latest global tax configurations from the central repository.
+ * @returns The global tax configuration
  */
-export async function fetchLatestTaxConfig(): Promise<TaxConfig> {
+export async function fetchLatestTaxConfig(): Promise<GlobalTaxConfig> {
   try {
     const response = await fetch(REMOTE_RATES_URL);
     if (!response.ok) throw new Error('Failed to fetch remote rates');
-    const remoteConfig = await response.json();
-    return remoteConfig as TaxConfig;
+    return await response.json();
   } catch (error) {
-    console.warn('Rwanda-Taxes: Falling back to built-in rates due to fetch error.');
-    return DEFAULT_TAX_CONFIG_2024;
+    console.warn('Global-Taxes: Error fetching remote rates. Using local data if available.');
+    throw error;
   }
 }

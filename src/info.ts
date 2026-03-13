@@ -1,71 +1,38 @@
-import { DEFAULT_TAX_CONFIG_2024, TaxConfig, TaxBands } from './types';
-import { VAT_RATE_RW } from './index';
+import { CountryInfo, GlobalTaxConfig, TaxDefinition } from './types';
 
-export interface TaxInfoSummary {
-  year: number;
-  display: {
-    payeBands: string[];
-    rssb: {
-      pension: string;
-      maternity: string;
-    };
-    wht: {
-      standard: string;
-      publicTender: string;
-      import: string;
-    };
-    casualPAYE: string;
-    vat: string;
-  };
-  raw: {
-    payeBands: TaxBands[];
-    rssbRate: number;
-    maternityRate: number;
-    vatRate: number;
-    whtRates: {
-      standard: number;
-      publicTender: number;
-      import: number;
-    };
-  };
+/**
+ * Returns a list of all supported countries.
+ * @param config The global tax configuration
+ * @returns An array of country basic info
+ */
+export function getSupportedCountries(config: GlobalTaxConfig): { name: string; code: string }[] {
+  return config.countries.map(c => ({ name: c.name, code: c.code }));
 }
 
 /**
- * Returns a structured summary of the tax rates and bands, including 
- * both raw numeric data and human-readable strings.
- * @param config Optional tax configuration
- * @returns A structured summary of tax rules
+ * Returns the full tax details for a specific country.
+ * @param config The global tax configuration
+ * @param countryCode The ISO country code (e.g., 'RW', 'US')
+ * @returns The country info or undefined if not found
  */
-export function getTaxSummary(config: TaxConfig = DEFAULT_TAX_CONFIG_2024): TaxInfoSummary {
-  return {
-    year: 2024,
-    display: {
-      payeBands: config.payeBands.map((band: TaxBands) => {
-        const maxStr = band.max ? ` to ${band.max.toLocaleString()} Rwf` : ' and above';
-        return `${band.min.toLocaleString()}${maxStr}: ${band.rate * 100}%`;
-      }),
-      rssb: {
-        pension: `${config.rssbRate * 100}% (Employee) + ${config.rssbRate * 100}% (Employer)`,
-        maternity: `${config.maternityRate * 100}% (Employee) + ${config.maternityRate * 100}% (Employer)`,
-      },
-      wht: {
-        standard: '15%',
-        publicTender: '3%',
-        import: '5%',
-      },
-      casualPAYE: '0% up to 60,000 Rwf, then 15% flat rate',
-      vat: `${VAT_RATE_RW * 100}%`,
-    },
-    raw: {
-      payeBands: config.payeBands,
-      rssbRate: config.rssbRate,
-      maternityRate: config.maternityRate,
-      vatRate: VAT_RATE_RW,
-      whtRates: {
-        standard: 0.15,
-        publicTender: 0.03,
-        import: 0.05,
-      },
-    },
-  };
+export function getCountryTaxes(config: GlobalTaxConfig, countryCode: string): CountryInfo | undefined {
+  return config.countries.find(c => c.code.toUpperCase() === countryCode.toUpperCase());
+}
+
+/**
+ * Search for specific tax types across all countries.
+ * @param config The global tax configuration
+ * @param taxType The type of tax (e.g., 'VAT')
+ * @returns An array of tax definitions with country info
+ */
+export function searchTaxType(config: GlobalTaxConfig, taxType: string): { country: string; tax: TaxDefinition }[] {
+  const results: { country: string; tax: TaxDefinition }[] = [];
+  config.countries.forEach(country => {
+    country.taxes.forEach(tax => {
+      if (tax.type.toUpperCase() === taxType.toUpperCase()) {
+        results.push({ country: country.name, tax });
+      }
+    });
+  });
+  return results;
 }

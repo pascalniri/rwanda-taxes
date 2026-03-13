@@ -1,15 +1,14 @@
-# Rwanda Taxes
+# Global Taxes Data Provider
 
-A comprehensive and reliable npm package for calculating taxes in Rwanda according to the latest RRA (Rwanda Revenue Authority) and RSSB (Rwanda Social Security Board) regulations (2024).
+A comprehensive and reliable npm package for fetching and rendering tax information from around the world. Originally started with a focus on Rwanda, this package has expanded to become a universal data provider for tax rates, authorities, and essential fiscal information.
 
 ## Features
 
-- **PAYE (Pay As You Earn)**: Accurate calculation based on monthly bands.
-- **RSSB Contributions**: Pension (3% employee, 3% employer) and Maternity Leave Fund (0.3% employee, 0.3% employer).
-- **Casual Laborer Tax**: Specific rules for casual labor.
-- **VAT**: Helper functions for calculating and extracting VAT (18%).
-- **Salary Breakdown**: Full gross-to-net salary breakdown.
-- **TypeScript Support**: Fully typed API for excellent developer experience.
+- **Global Coverage**: Fetch tax details for Rwanda, Kenya, USA, UK, South Africa, and more.
+- **Dynamic Updates**: Remote-fetching architecture ensures you always have the latest rates without updating the package.
+- **Richer Data**: Detailed information including tax authorities, fiscal years, and filing deadlines.
+- **Developer First**: Fully typed API designed for building tax-aware applications and APIs.
+- **CLI Resource**: Instant tax information directly in your terminal.
 
 ## Installation
 
@@ -17,132 +16,73 @@ A comprehensive and reliable npm package for calculating taxes in Rwanda accordi
 npm install rwanda-taxes
 ```
 
-## Usage
+## CLI Usage
 
-### Salary Calculation
+View tax details for any supported country directly from your terminal:
 
-```typescript
-import { calculateSalary } from 'rwanda-taxes';
+```bash
+# List all supported countries
+npx rwanda-taxes --list
 
-const breakdown = calculateSalary(500000);
-
-console.log(breakdown);
-/*
-{
-  grossSalary: 500000,
-  rssbEmployee: 15000,
-  rssbEmployer: 15000,
-  maternityEmployee: 1500,
-  maternityEmployer: 1500,
-  taxableIncome: 483500,
-  paye: 109050,
-  netSalary: 374450,
-  totalEmployerCost: 516500
-}
-*/
+# View details for a specific country (default is RW)
+npx rwanda-taxes --country=US
+npx rwanda-taxes --country=KE
 ```
 
-### VAT Calculations
+## API Usage
+
+### 1. Fetching Global Data
 
 ```typescript
-import { calculateVAT, extractVAT } from 'rwanda-taxes';
+import { fetchLatestTaxConfig, getCountryTaxes, getSupportedCountries } from 'rwanda-taxes';
 
-// Adding VAT to a net amount
-const vat = calculateVAT(1000); // 180
+async function main() {
+  // Fetch the latest global configuration
+  const config = await fetchLatestTaxConfig();
 
-// Extracting VAT from a gross amount
-const vatIncluded = extractVAT(1180); // 180
-```
+  // List all available countries
+  const countries = getSupportedCountries(config);
 
-### Withholding Tax (WHT)
-
-```typescript
-import { calculateWHT, applyWHT, WHT_RATES } from 'rwanda-taxes';
-
-// Standard 15% WHT
-const wht = calculateWHT(100000); // 15000
-
-// 3% WHT for Public Tenders
-const tenderWht = calculateWHT(100000, WHT_RATES.PUBLIC_TENDER); // 3000
-```
-
-### Rendering in Next.js / React
-
-To show the latest tax rates in your UI, you can use the `fetchLatestTaxConfig` and `getTaxSummary` utilities together.
-
-```tsx
-import { useEffect, useState } from 'react';
-import { fetchLatestTaxConfig, getTaxSummary, TaxInfoSummary } from 'rwanda-taxes';
-
-export default function TaxInfoPage() {
-  const [info, setInfo] = useState<TaxInfoSummary | null>(null);
-
-  useEffect(() => {
-    fetchLatestTaxConfig().then(config => {
-      setInfo(getTaxSummary(config));
-    });
-  }, []);
-
-  if (!info) return <div>Loading tax rates...</div>;
-
-  return (
-    <div>
-      <h1>Rwanda Tax Rates ({info.year})</h1>
-      <p>VAT: {info.vat}</p>
-      <h2>PAYE Brackets</h2>
-      <ul>
-        {info.payeBands.map((band, i) => <li key={i}>{band}</li>)}
-      </ul>
-    </div>
-  );
+  // Get specific tax details for Kenya
+  const kenya = getCountryTaxes(config, 'KE');
+  
+  if (kenya) {
+    console.log(`VAT in Kenya: ${kenya.taxes.find(t => t.type === 'VAT')?.rate}%`);
+  }
 }
 ```
 
-### Building an API Endpoint (Data Provider)
+### 2. Building a Tax Information API
 
-If you want to create a web API that serves Rwanda tax data to other applications (e.g., in Express or Next.js API Routes):
+Perfect for creating a centralized data provider for your microservices or frontend:
 
 ```typescript
-// pages/api/taxes.ts (Next.js) or routes/taxes.ts (Express)
-import { fetchLatestTaxConfig, getTaxSummary } from 'rwanda-taxes';
+import { fetchLatestTaxConfig, getCountryTaxes } from 'rwanda-taxes';
 
 export default async function handler(req, res) {
-  // 1. Fetch live rates from GitHub
+  const { countryCode } = req.query;
   const config = await fetchLatestTaxConfig();
+  const data = getCountryTaxes(config, countryCode || 'RW');
   
-  // 2. Get the structured summary
-  const taxData = getTaxSummary(config);
+  if (!data) return res.status(404).json({ error: 'Country not found' });
   
-  // 3. Respond with full JSON data
-  res.status(200).json(taxData);
+  res.status(200).json({
+    status: 'success',
+    data: data,
+    meta: {
+        lastUpdated: config.meta.lastUpdated,
+        version: config.meta.version
+    }
+  });
 }
 ```
 
-The response will include both **`display`** strings (for UI) and **`raw`** values (for calculations).
-```
-
-### Casual Laborer PAYE
-
-```typescript
-import { calculateCasualPAYE } from 'rwanda-taxes';
-
-const tax = calculateCasualPAYE(100000); // Tax on income above 60k at 15%
-```
-
-## Tax Bands (2024)
-
-| Band (Monthly Rwf) | Rate |
-| --- | --- |
-| 0 - 60,000 | 0% |
-| 60,001 - 100,000 | 10% |
-| 100,001 - 200,000 | 20% |
-| Above 200,000 | 30% |
+## Supported Countries
+Currently including Rwanda, Kenya, Uganda, South Africa, UK, USA, and more added regularly via remote updates.
 
 ## Author
-
 **Pascal Niri**
 - GitHub: [@pascalniri](https://github.com/pascalniri)
 
 ## License
-
 MIT

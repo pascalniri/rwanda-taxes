@@ -1,10 +1,214 @@
 {
-  "payeBands": [
-    { "min": 0, "max": 60000, "rate": 0 },
-    { "min": 60000, "max": 100000, "rate": 0.1 },
-    { "min": 100000, "max": 200000, "rate": 0.2 },
-    { "min": 200000, "max": null, "rate": 0.3 }
+  "countries": [
+    {
+      "name": "Rwanda",
+      "code": "RW",
+      "currency": "RWF",
+      "continent": "Africa",
+      "essentialInfo": {
+        "fiscalYear": "July to June",
+        "taxAuthority": "Rwanda Revenue Authority (RRA)",
+        "filingDeadline": "15th of the following month"
+      },
+      "taxes": [
+        {
+          "name": "Value Added Tax",
+          "type": "VAT",
+          "rate": 18,
+          "unit": "percent",
+          "description": "Standard consumption tax on goods and services.",
+          "authority": "RRA"
+        },
+        {
+          "name": "Pay As You Earn",
+          "type": "PAYE",
+          "rate": "0-30",
+          "unit": "percent",
+          "description": "Progressive tax on employment income.",
+          "bands": [
+            { "min": 0, "max": 60000, "rate": 0, "label": "Exempt" },
+            { "min": 60000, "max": 100000, "rate": 0.1, "label": "Lower Band" },
+            { "min": 100000, "max": 200000, "rate": 0.2, "label": "Middle Band" },
+            { "min": 200000, "max": null, "rate": 0.3, "label": "Higher Band" }
+          ]
+        },
+        {
+          "name": "Pension Contribution",
+          "type": "RSSB",
+          "rate": 3,
+          "unit": "percent",
+          "description": "Mandatory pension contribution for employees."
+        },
+        {
+          "name": "Maternity Leave Fund",
+          "type": "RSSB_MATERNITY",
+          "rate": 0.3,
+          "unit": "percent",
+          "description": "Social security fund for maternity benefits."
+        },
+        {
+          "name": "Withholding Tax",
+          "type": "WHT",
+          "rate": 15,
+          "unit": "percent",
+          "description": "Standard WHT on professional services and management fees."
+        }
+      ]
+    },
+    {
+      "name": "Kenya",
+      "code": "KE",
+      "currency": "KES",
+      "continent": "Africa",
+      "essentialInfo": {
+        "fiscalYear": "July to June",
+        "taxAuthority": "Kenya Revenue Authority (KRA)",
+        "filingDeadline": "20th of the following month"
+      },
+      "taxes": [
+        {
+          "name": "Value Added Tax",
+          "type": "VAT",
+          "rate": 16,
+          "unit": "percent",
+          "description": "Standard rate for taxable supplies."
+        },
+        {
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "10-35",
+          "unit": "percent",
+          "bands": [
+            { "min": 0, "max": 288000, "rate": 0.1 },
+            { "min": 288001, "max": 388000, "rate": 0.25 },
+            { "min": 388001, "max": 6000000, "rate": 0.3 },
+            { "min": 6000001, "max": 9600000, "rate": 0.325 },
+            { "min": 9600001, "max": null, "rate": 0.35 }
+          ]
+        },
+        {
+          "name": "Corporate Tax (Resident)",
+          "type": "CIT",
+          "rate": 30,
+          "unit": "percent"
+        }
+      ]
+    },
+    {
+      "name": "Uganda",
+      "code": "UG",
+      "currency": "UGX",
+      "continent": "Africa",
+      "essentialInfo": {
+        "fiscalYear": "July to June",
+        "taxAuthority": "Uganda Revenue Authority (URA)",
+        "filingDeadline": "15th of the following month"
+      },
+      "taxes": [
+        {
+          "name": "Value Added Tax",
+          "type": "VAT",
+          "rate": 18,
+          "unit": "percent"
+        },
+        {
+          "name": "Pay As You Earn",
+          "type": "PAYE",
+          "rate": "0-40",
+          "unit": "percent"
+        }
+      ]
+    },
+    {
+      "name": "South Africa",
+      "code": "ZA",
+      "currency": "ZAR",
+      "continent": "Africa",
+      "essentialInfo": {
+        "fiscalYear": "March to February",
+        "taxAuthority": "South African Revenue Service (SARS)",
+        "filingDeadline": "Varies (Sept-Jan for individuals)"
+      },
+      "taxes": [
+        {
+          "name": "Value Added Tax",
+          "type": "VAT",
+          "rate": 15,
+          "unit": "percent"
+        },
+        {
+          "name": "Individual Income Tax",
+          "type": "PAYE",
+          "rate": "18-45",
+          "unit": "percent"
+        },
+        {
+          "name": "Corporate Tax",
+          "type": "CIT",
+          "rate": 27,
+          "unit": "percent"
+        }
+      ]
+    },
+    {
+      "name": "United Kingdom",
+      "code": "GB",
+      "currency": "GBP",
+      "continent": "Europe",
+      "essentialInfo": {
+        "fiscalYear": "April to April",
+        "taxAuthority": "HM Revenue & Customs (HMRC)",
+        "filingDeadline": "31 January (online)"
+      },
+      "taxes": [
+        {
+          "name": "Value Added Tax",
+          "type": "VAT",
+          "rate": 20,
+          "unit": "percent"
+        },
+        {
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": "20-45",
+          "unit": "percent"
+        },
+        {
+          "name": "Corporation Tax",
+          "type": "CIT",
+          "rate": "19-25",
+          "unit": "percent"
+        }
+      ]
+    },
+    {
+      "name": "United States",
+      "code": "US",
+      "currency": "USD",
+      "continent": "North America",
+      "essentialInfo": {
+        "fiscalYear": "January to December",
+        "taxAuthority": "Internal Revenue Service (IRS)",
+        "filingDeadline": "April 15"
+      },
+      "taxes": [
+        {
+          "name": "Federal Income Tax",
+          "type": "INCOME",
+          "rate": "10-37",
+          "unit": "percent"
+        },
+        {
+          "name": "Corporate Tax",
+          "type": "CIT",
+          "rate": 21,
+          "unit": "percent"
+        }
+      ]
+    }
   ],
-  "rssbRate": 0.03,
-  "maternityRate": 0.003
+  "meta": {
+    "lastUpdated": "2026-03-14",
+    "version": "2.0.0"
+  }
 }
