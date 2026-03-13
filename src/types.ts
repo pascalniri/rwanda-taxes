@@ -39,6 +39,23 @@ export interface GlobalTaxConfig {
   };
 }
 
+// Compatibility Types for v1.x
+export interface TaxInfoSummary {
+  year: number;
+  payeBands: string[];
+  rssb: {
+    pension: string;
+    maternity: string;
+  };
+  wht: {
+    standard: string;
+    publicTender: string;
+    import: string;
+  };
+  casualPAYE: string;
+  vat: string;
+}
+
 // Keep legacy types for backward compatibility where possible
 export interface TaxBands {
   min: number;

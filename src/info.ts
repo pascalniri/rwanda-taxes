@@ -1,4 +1,4 @@
-import { CountryInfo, GlobalTaxConfig, TaxDefinition } from './types';
+import { CountryInfo, GlobalTaxConfig, TaxDefinition, TaxInfoSummary } from './types';
 
 /**
  * Returns a list of all supported countries.
@@ -35,4 +35,40 @@ export function searchTaxType(config: GlobalTaxConfig, taxType: string): { count
     });
   });
   return results;
+}
+
+/**
+ * Compatibility helper to return Rwanda tax summary in the old format.
+ * @param config The global tax configuration
+ * @returns A structured summary of Rwanda tax rules
+ */
+export function getTaxSummary(config: GlobalTaxConfig): TaxInfoSummary {
+  const rw = getCountryTaxes(config, 'RW');
+  if (!rw) throw new Error('Rwanda configuration not found in global config');
+
+  const findTax = (type: string) => rw.taxes.find(t => t.type === type);
+  const vat = findTax('VAT');
+  const paye = findTax('PAYE');
+  const pension = findTax('RSSB');
+  const maternity = findTax('RSSB_MATERNITY');
+  const wht = findTax('WHT');
+
+  return {
+    year: 2024,
+    payeBands: paye?.bands?.map(band => {
+      const maxStr = band.max ? ` to ${band.max.toLocaleString()} Rwf` : ' and above';
+      return `${band.min.toLocaleString()}${maxStr}: ${band.rate * 100}%`;
+    }) || [],
+    rssb: {
+      pension: `${(pension?.rate as number || 0) * 1}% (Employee) + ${(pension?.rate as number || 0) * 1}% (Employer)`,
+      maternity: `${(maternity?.rate as number || 0) * 1}% (Employee) + ${(maternity?.rate as number || 0) * 1}% (Employer)`,
+    },
+    wht: {
+      standard: '15%',
+      publicTender: '3%',
+      import: '5%',
+    },
+    casualPAYE: '0% up to 60,000 Rwf, then 15% flat rate',
+    vat: `${vat?.rate}%`,
+  };
 }
