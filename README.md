@@ -83,6 +83,11 @@ const tax = calculateCasualPAYE(100000); // Tax on income above 60k at 15%
 | 100,001 - 200,000 | 20% |
 | Above 200,000 | 30% |
 
+## Author
+
+**Pascal Niri**
+- GitHub: [@pascalniri](https://github.com/pascalniri)
+
 ## License
 
 MIT

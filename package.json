@@ -17,8 +17,16 @@
     "format": "prettier --write src/**/*.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Pascal Niri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pascalniri/rwanda-taxes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pascalniri/rwanda-taxes/issues"
+  },
+  "homepage": "https://github.com/pascalniri/rwanda-taxes#readme",
   "type": "commonjs",
   "devDependencies": {
     "@types/node": "^25.5.0",
