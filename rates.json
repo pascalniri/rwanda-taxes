@@ -34,22 +34,22 @@
               "label": "Exempt"
             },
             {
-              "min": 60000,
+              "min": 60001,
               "max": 100000,
               "rate": 0.1,
-              "label": "Lower Band"
+              "label": "First Band"
             },
             {
-              "min": 100000,
+              "min": 100001,
               "max": 200000,
               "rate": 0.2,
-              "label": "Middle Band"
+              "label": "Second Band"
             },
             {
-              "min": 200000,
+              "min": 200001,
               "max": null,
               "rate": 0.3,
-              "label": "Higher Band"
+              "label": "Third Band"
             }
           ],
           "id": "85b1ebcb-ac91-4113-a979-285cad03dd6f"
@@ -77,6 +77,13 @@
           "unit": "percent",
           "description": "Standard WHT on professional services and management fees.",
           "id": "da2baf84-57fe-44e8-8c19-267ba4eee91e"
+        },
+        {
+          "name": "Corporate Income Tax",
+          "type": "CIT",
+          "rate": 28,
+          "unit": "percent",
+          "id": "9f70631a-21fd-43ff-ab7b-3aed352c6618"
         }
       ]
     },
@@ -108,27 +115,32 @@
             {
               "min": 0,
               "max": 288000,
-              "rate": 0.1
+              "rate": 0.1,
+              "label": "First Band"
             },
             {
               "min": 288001,
               "max": 388000,
-              "rate": 0.25
+              "rate": 0.25,
+              "label": "Second Band"
             },
             {
               "min": 388001,
               "max": 6000000,
-              "rate": 0.3
+              "rate": 0.3,
+              "label": "Third Band"
             },
             {
               "min": 6000001,
               "max": 9600000,
-              "rate": 0.325
+              "rate": 0.325,
+              "label": "Fourth Band"
             },
             {
               "min": 9600001,
               "max": null,
-              "rate": 0.35
+              "rate": 0.35,
+              "label": "Fifth Band"
             }
           ],
           "id": "edada365-f511-41a3-b804-071520d1a088"
@@ -165,7 +177,41 @@
           "type": "PAYE",
           "rate": "0-40",
           "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 2820000,
+              "rate": 0
+            },
+            {
+              "min": 2820001,
+              "max": 4020000,
+              "rate": 0.1
+            },
+            {
+              "min": 4020001,
+              "max": 4920000,
+              "rate": 0.2
+            },
+            {
+              "min": 4920001,
+              "max": 12000000,
+              "rate": 0.3
+            },
+            {
+              "min": 12000001,
+              "max": null,
+              "rate": 0.4
+            }
+          ],
           "id": "a0d3058a-b81b-41bf-bcfb-fca455719770"
+        },
+        {
+          "name": "Corporate Tax",
+          "type": "CIT",
+          "rate": 30,
+          "unit": "percent",
+          "id": "a0d3058a-b81b-41bf-bcfb-fca455719771"
         }
       ]
     },
@@ -215,25 +261,51 @@
       },
       "taxes": [
         {
+          "id": "e4a2d3c1-b3b3-4f9e-9d2a-4a2b3c4d5e6f",
           "name": "Value Added Tax",
           "type": "VAT",
           "rate": 20,
-          "unit": "percent",
-          "id": "00cc6632-2604-42ff-a7e4-061a7c1e368f"
+          "unit": "percent"
         },
         {
+          "id": "f5b3e4d2-c4c4-5a0f-0e3b-5b3c4d5e6f7a",
           "name": "Income Tax",
           "type": "PAYE",
           "rate": "20-45",
           "unit": "percent",
-          "id": "8eed494d-605d-4df8-869c-f6083c946ca7"
+          "bands": [
+            {
+              "min": 0,
+              "max": 12570,
+              "rate": 0,
+              "label": "Personal Allowance"
+            },
+            {
+              "min": 12571,
+              "max": 50270,
+              "rate": 0.2,
+              "label": "Basic Rate"
+            },
+            {
+              "min": 50271,
+              "max": 125140,
+              "rate": 0.4,
+              "label": "Higher Rate"
+            },
+            {
+              "min": 125141,
+              "max": null,
+              "rate": 0.45,
+              "label": "Additional Rate"
+            }
+          ]
         },
         {
+          "id": "g6c4f5e3-d5d5-6b1e-0f4c-6c4d5e6f7a8b",
           "name": "Corporation Tax",
           "type": "CIT",
-          "rate": "19-25",
-          "unit": "percent",
-          "id": "18fad2d8-e4aa-43a3-8f24-32205e3acae7"
+          "rate": 25,
+          "unit": "percent"
         }
       ]
     },
@@ -271,7 +343,7 @@
       "continent": "Africa",
       "essentialInfo": {
         "fiscalYear": "January to December",
-        "taxAuthority": "Federal Inland Revenue Service (FIRS)",
+        "taxAuthority": "Nigeria Revenue Service (NRS)",
         "filingDeadline": "30th June"
       },
       "taxes": [
@@ -287,44 +359,44 @@
           "id": "e03d7782-cb7e-4a0c-a666-ff3c689946a4",
           "name": "Personal Income Tax",
           "type": "PAYE",
-          "rate": "7-24",
+          "rate": "0-25",
           "unit": "percent",
           "bands": [
             {
               "min": 0,
-              "max": 300000,
-              "rate": 0.07,
-              "label": "First 300k"
+              "max": 800000,
+              "rate": 0,
+              "label": "Exempt"
             },
             {
-              "min": 300001,
-              "max": 600000,
-              "rate": 0.11,
-              "label": "Next 300k"
-            },
-            {
-              "min": 600001,
-              "max": 1100000,
+              "min": 800001,
+              "max": 3000000,
               "rate": 0.15,
-              "label": "Next 500k"
+              "label": "First Band"
             },
             {
-              "min": 1100001,
-              "max": 1600000,
-              "rate": 0.19,
-              "label": "Next 500k"
+              "min": 3000001,
+              "max": 12000000,
+              "rate": 0.18,
+              "label": "Second Band"
             },
             {
-              "min": 1600001,
-              "max": 3200000,
+              "min": 12000001,
+              "max": 25000000,
               "rate": 0.21,
-              "label": "Next 1.6m"
+              "label": "Third Band"
             },
             {
-              "min": 3200001,
+              "min": 25000001,
+              "max": 50000000,
+              "rate": 0.23,
+              "label": "Fourth Band"
+            },
+            {
+              "min": 50000001,
               "max": null,
-              "rate": 0.24,
-              "label": "Above 3.2m"
+              "rate": 0.25,
+              "label": "Fifth Band"
             }
           ]
         },
@@ -354,7 +426,7 @@
           "type": "VAT",
           "rate": 20,
           "unit": "percent",
-          "description": "Includes 15% VAT, 2.5% NHIL, and 2.5% GETFund."
+          "description": "Standard VAT rate comprising 15% VAT, 2.5% NHIL, and 2.5% GETFund."
         },
         {
           "id": "9f4dd49e-9f70-42ad-9a06-f21b335d8eef",
@@ -498,36 +570,31 @@
           "bands": [
             {
               "min": 0,
-              "max": 600,
+              "max": 2000,
               "rate": 0
             },
             {
-              "min": 601,
-              "max": 1650,
-              "rate": 0.1
-            },
-            {
-              "min": 1651,
-              "max": 3200,
+              "min": 2001,
+              "max": 4000,
               "rate": 0.15
             },
             {
-              "min": 3201,
-              "max": 5250,
+              "min": 4001,
+              "max": 7000,
               "rate": 0.2
             },
             {
-              "min": 5251,
-              "max": 7800,
+              "min": 7001,
+              "max": 10000,
               "rate": 0.25
             },
             {
-              "min": 7801,
-              "max": 10900,
+              "min": 10001,
+              "max": 14000,
               "rate": 0.3
             },
             {
-              "min": 10901,
+              "min": 14001,
               "max": null,
               "rate": 0.35
             }
@@ -566,6 +633,13 @@
           "type": "CIT",
           "rate": 22.5,
           "unit": "percent"
+        },
+        {
+          "id": "18f00fa4-f591-424e-a1a4-b7992131973c",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "10-27.5",
+          "unit": "percent"
         }
       ]
     },
@@ -593,6 +667,13 @@
           "type": "CIT",
           "rate": 20,
           "unit": "percent"
+        },
+        {
+          "id": "31d99369-2630-4e1e-901f-2fb227d95332",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-37",
+          "unit": "percent"
         }
       ]
     },
@@ -619,6 +700,13 @@
           "name": "Corporate Income Tax",
           "type": "CIT",
           "rate": 30,
+          "unit": "percent"
+        },
+        {
+          "id": "cd919cc8-282e-48d6-a32b-7a58db94b597",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-43",
           "unit": "percent"
         }
       ]
@@ -665,7 +753,7 @@
           "id": "28cb33d0-f256-4543-8204-3fa0756f6a6c",
           "name": "Value Added Tax",
           "type": "VAT",
-          "rate": 17.5,
+          "rate": 19.25,
           "unit": "percent"
         },
         {
@@ -673,6 +761,13 @@
           "name": "Corporate Income Tax",
           "type": "CIT",
           "rate": 33,
+          "unit": "percent"
+        },
+        {
+          "id": "814653aa-2bdd-4c39-8ca1-8231ac8d0658",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "11-38.5",
           "unit": "percent"
         }
       ]
@@ -701,6 +796,13 @@
           "type": "CIT",
           "rate": 25,
           "unit": "percent"
+        },
+        {
+          "id": "009676c1-fe92-4ec2-bc12-8c1cd5438775",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-40",
+          "unit": "percent"
         }
       ]
     },
@@ -728,6 +830,30 @@
           "type": "CIT",
           "rate": 15,
           "unit": "percent"
+        },
+        {
+          "id": "059cd54d-53a6-4a59-bbbc-76686ba6637e",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-20",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 500000,
+              "rate": 0
+            },
+            {
+              "min": 500001,
+              "max": 1000000,
+              "rate": 0.1
+            },
+            {
+              "min": 1000001,
+              "max": null,
+              "rate": 0.2
+            }
+          ]
         }
       ]
     },
@@ -754,6 +880,13 @@
           "name": "Corporate Income Tax",
           "type": "CIT",
           "rate": 26,
+          "unit": "percent"
+        },
+        {
+          "id": "286d0304-0b9b-4207-afe8-db20087141ae",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-35",
           "unit": "percent"
         }
       ]
@@ -782,6 +915,13 @@
           "type": "CIT",
           "rate": 20,
           "unit": "percent"
+        },
+        {
+          "id": "00081894-c2c2-4df5-9401-7a002fb39cfb",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-40",
+          "unit": "percent"
         }
       ]
     },
@@ -809,6 +949,40 @@
           "type": "CIT",
           "rate": 25.8,
           "unit": "percent"
+        },
+        {
+          "id": "a1b2c3d4-e5f6-4a5b-8c7d-9e0f1a2b3c4d",
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": "0-45",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 11600,
+              "rate": 0
+            },
+            {
+              "min": 11601,
+              "max": 29579,
+              "rate": 0.11
+            },
+            {
+              "min": 29580,
+              "max": 84577,
+              "rate": 0.3
+            },
+            {
+              "min": 84578,
+              "max": 181917,
+              "rate": 0.41
+            },
+            {
+              "min": 181918,
+              "max": null,
+              "rate": 0.45
+            }
+          ]
         }
       ]
     },
@@ -831,11 +1005,45 @@
           "unit": "percent"
         },
         {
-          "id": "24af7af4-de41-42a0-83d4-3e5486e314e6",
+          "id": "b2c3d4e5-f6a7-4b6c-9d8e-0f1a2b3c4d5e",
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": "14-45",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 12348,
+              "rate": 0,
+              "label": "Tax Free"
+            },
+            {
+              "min": 12349,
+              "max": 69878,
+              "rate": 0.14,
+              "label": "Basic"
+            },
+            {
+              "min": 69879,
+              "max": 277825,
+              "rate": 0.42,
+              "label": "Higher"
+            },
+            {
+              "min": 277826,
+              "max": null,
+              "rate": 0.45,
+              "label": "Top"
+            }
+          ]
+        },
+        {
+          "id": "c3d4e5f6-a7b8-4c7d-0e9f-1a2b3c4d5e6f",
           "name": "Corporate Income Tax",
           "type": "CIT",
-          "rate": 30.1,
-          "unit": "percent"
+          "rate": 15.825,
+          "unit": "percent",
+          "description": "Statutory rate (15%) plus 5.5% solidarity surcharge."
         }
       ]
     },
@@ -858,10 +1066,34 @@
           "unit": "percent"
         },
         {
+          "id": "d4e5f6a7-b8c9-4d8e-1f0g-2b3c4d5e6f7g",
+          "name": "Income Tax (IRPEF)",
+          "type": "PAYE",
+          "rate": "23-43",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 28000,
+              "rate": 0.23
+            },
+            {
+              "min": 28001,
+              "max": 50000,
+              "rate": 0.33
+            },
+            {
+              "min": 50001,
+              "max": null,
+              "rate": 0.43
+            }
+          ]
+        },
+        {
           "id": "471b1770-bcc7-406d-b076-53a47495218c",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Income Tax (IRES)",
           "type": "CIT",
-          "rate": 27.8,
+          "rate": 24,
           "unit": "percent"
         }
       ]
@@ -883,6 +1115,45 @@
           "type": "VAT",
           "rate": 21,
           "unit": "percent"
+        },
+        {
+          "id": "e5f6a7b8-c9d0-4e9f-2g1h-3c4d5e6f7g8h",
+          "name": "Income Tax (IRPF)",
+          "type": "PAYE",
+          "rate": "19-47",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 12450,
+              "rate": 0.19
+            },
+            {
+              "min": 12451,
+              "max": 20200,
+              "rate": 0.24
+            },
+            {
+              "min": 20201,
+              "max": 35200,
+              "rate": 0.3
+            },
+            {
+              "min": 35201,
+              "max": 60000,
+              "rate": 0.37
+            },
+            {
+              "min": 60001,
+              "max": 300000,
+              "rate": 0.45
+            },
+            {
+              "min": 300001,
+              "max": null,
+              "rate": 0.47
+            }
+          ]
         },
         {
           "id": "f9eb13ff-eab8-4c9b-8120-3efd632a37b9",
@@ -932,18 +1203,26 @@
       },
       "taxes": [
         {
-          "id": "bfd3020d-98cb-49d2-ba69-9523d5826f37",
+          "id": "h8c9d0e1-f2a3-6h2i-5j4k-6f7g8h9i0j1k",
           "name": "Value Added Tax",
           "type": "VAT",
           "rate": 8.1,
           "unit": "percent"
         },
         {
-          "id": "95206b30-8124-4aa2-bcb3-4103cc8bf9d9",
-          "name": "Corporate Income Tax",
+          "id": "i9d0e1f2-a3b4-7i3j-6k5l-7g8h9i0j1k2l",
+          "name": "Federal Income Tax",
+          "type": "PAYE",
+          "rate": "0-11.5",
+          "unit": "percent"
+        },
+        {
+          "id": "i9d0e1f2-a3b4-7i3j-6k5l-7g8h9i0j1k2m",
+          "name": "Corporate Tax (Total)",
           "type": "CIT",
           "rate": 14.4,
-          "unit": "percent"
+          "unit": "percent",
+          "description": "Combined federal, cantonal, and communal average."
         }
       ]
     },
@@ -966,11 +1245,30 @@
           "unit": "percent"
         },
         {
-          "id": "71e39196-692a-4cd5-aa0d-cc9d2547ba21",
+          "id": "k1f2a3b4-c5d6-9k5l-8m7n-9i0j1k2l3m4n",
           "name": "Corporate Income Tax",
           "type": "CIT",
           "rate": 20.6,
           "unit": "percent"
+        },
+        {
+          "id": "j0e1f2a3-b4c5-8j4k-7l6m-8h9i0j1k2l3m",
+          "name": "National Income Tax",
+          "type": "PAYE",
+          "rate": 20,
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 625800,
+              "rate": 0
+            },
+            {
+              "min": 625801,
+              "max": null,
+              "rate": 0.2
+            }
+          ]
         }
       ]
     },
@@ -991,6 +1289,46 @@
           "type": "VAT",
           "rate": 25,
           "unit": "percent"
+        },
+        {
+          "id": "l2a3b4c5-d6e7-0l6m-9n8p-0j1k2l3m4n5p",
+          "name": "Bracket Tax (Trinnskatt)",
+          "type": "PAYE",
+          "rate": "1.7-17.8",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 226100,
+              "rate": 0
+            },
+            {
+              "min": 226101,
+              "max": 318300,
+              "rate": 0.017
+            },
+            {
+              "min": 318301,
+              "max": 725050,
+              "rate": 0.04
+            },
+            {
+              "min": 725051,
+              "max": 980100,
+              "rate": 0.137
+            },
+            {
+              "min": 980101,
+              "max": 1467200,
+              "rate": 0.168
+            },
+            {
+              "min": 1467201,
+              "max": null,
+              "rate": 0.178
+            }
+          ],
+          "description": "Additional 22% basic tax applies to net income."
         },
         {
           "id": "b47e4d88-066a-485f-ba69-57237fd40bc6",
@@ -1020,8 +1358,29 @@
           "unit": "percent"
         },
         {
-          "id": "1da03690-9b6f-434c-970f-999042124716",
-          "name": "Corporate Income Tax",
+          "id": "n4c5d6e7-f8a9-2n8p-1r0s-2l3m4n5p6r7s",
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": "20-40",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 44000,
+              "rate": 0.2,
+              "label": "Standard Rate"
+            },
+            {
+              "min": 44001,
+              "max": null,
+              "rate": 0.4,
+              "label": "Higher Rate"
+            }
+          ]
+        },
+        {
+          "id": "o5d6e7f8-a9b0-3o9q-2s1t-3m4n5p6q7r8s",
+          "name": "Corporation Tax (Trading)",
           "type": "CIT",
           "rate": 12.5,
           "unit": "percent"
@@ -1045,6 +1404,35 @@
           "type": "VAT",
           "rate": 21,
           "unit": "percent"
+        },
+        {
+          "id": "p6e7f8a9-b0c1-4p0r-3t2u-4n5p6q7r8s9t",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "25-50",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 16720,
+              "rate": 0.25
+            },
+            {
+              "min": 16721,
+              "max": 29510,
+              "rate": 0.4
+            },
+            {
+              "min": 29511,
+              "max": 51070,
+              "rate": 0.45
+            },
+            {
+              "min": 51071,
+              "max": null,
+              "rate": 0.5
+            }
+          ]
         },
         {
           "id": "babc2778-5b24-4bdc-8048-90e184f105dc",
@@ -1074,6 +1462,45 @@
           "unit": "percent"
         },
         {
+          "id": "r8g9h0i1-j2k3-6r0t-5v4w-6p7q8r9s0t1u",
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": "0-55",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 13541,
+              "rate": 0
+            },
+            {
+              "min": 13542,
+              "max": 23562,
+              "rate": 0.2
+            },
+            {
+              "min": 23563,
+              "max": 38167,
+              "rate": 0.3
+            },
+            {
+              "min": 38168,
+              "max": 69213,
+              "rate": 0.4
+            },
+            {
+              "min": 69214,
+              "max": 107954,
+              "rate": 0.48
+            },
+            {
+              "min": 107955,
+              "max": null,
+              "rate": 0.5
+            }
+          ]
+        },
+        {
           "id": "8b02b8b8-ce69-46ef-878a-37448788edc2",
           "name": "Corporate Income Tax",
           "type": "CIT",
@@ -1095,16 +1522,60 @@
       "taxes": [
         {
           "id": "db2a2f79-3ce1-492a-83e9-1737b97738ef",
-          "name": "Value Added Tax",
+          "name": "Goods and Services Tax (GST)",
           "type": "VAT",
-          "rate": 18,
+          "rate": "5 | 18",
           "unit": "percent"
+        },
+        {
+          "id": "u4v5w6x7-y8z9-0u1v-2w3x-4y5z6a7b8c9d",
+          "name": "Income Tax (New Regime)",
+          "type": "PAYE",
+          "rate": "0-30",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 400000,
+              "rate": 0
+            },
+            {
+              "min": 400001,
+              "max": 800000,
+              "rate": 0.05
+            },
+            {
+              "min": 800001,
+              "max": 1200000,
+              "rate": 0.1
+            },
+            {
+              "min": 1200001,
+              "max": 1600000,
+              "rate": 0.15
+            },
+            {
+              "min": 1600001,
+              "max": 2000000,
+              "rate": 0.2
+            },
+            {
+              "min": 2000001,
+              "max": 2400000,
+              "rate": 0.25
+            },
+            {
+              "min": 2400001,
+              "max": null,
+              "rate": 0.3
+            }
+          ]
         },
         {
           "id": "83a57f96-f54a-44c8-b48a-1e5cfe4314bd",
           "name": "Corporate Income Tax",
           "type": "CIT",
-          "rate": 30,
+          "rate": 22,
           "unit": "percent"
         }
       ]
@@ -1122,10 +1593,54 @@
       "taxes": [
         {
           "id": "5e089ca4-1cec-4c84-bee6-61f4238f064b",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
           "rate": 13,
           "unit": "percent"
+        },
+        {
+          "id": "v5w6x7y8-z9a0-1v2w-3x4y-5z6a7b8c9d0e",
+          "name": "Individual Income Tax (IIT)",
+          "type": "PAYE",
+          "rate": "3-45",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 36000,
+              "rate": 0.03
+            },
+            {
+              "min": 36001,
+              "max": 144000,
+              "rate": 0.1
+            },
+            {
+              "min": 144001,
+              "max": 300000,
+              "rate": 0.2
+            },
+            {
+              "min": 300001,
+              "max": 420000,
+              "rate": 0.25
+            },
+            {
+              "min": 420001,
+              "max": 660000,
+              "rate": 0.3
+            },
+            {
+              "min": 660001,
+              "max": 960000,
+              "rate": 0.35
+            },
+            {
+              "min": 960001,
+              "max": null,
+              "rate": 0.45
+            }
+          ]
         },
         {
           "id": "525ad205-cab5-4963-b800-067305e26590",
@@ -1149,14 +1664,58 @@
       "taxes": [
         {
           "id": "9d202186-2425-4eab-aa83-caf2ab5ca514",
-          "name": "Value Added Tax",
+          "name": "Consumption Tax (VAT)",
           "type": "VAT",
           "rate": 10,
           "unit": "percent"
         },
         {
+          "id": "w6x7y8z9-a0b1-2w3x-4y5z-6a7b8c9d0e1f",
+          "name": "Individual Income Tax (National)",
+          "type": "PAYE",
+          "rate": "5-45",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 1950000,
+              "rate": 0.05
+            },
+            {
+              "min": 1950001,
+              "max": 3300000,
+              "rate": 0.1
+            },
+            {
+              "min": 3300001,
+              "max": 6950000,
+              "rate": 0.2
+            },
+            {
+              "min": 6950001,
+              "max": 9000000,
+              "rate": 0.23
+            },
+            {
+              "min": 9000001,
+              "max": 18000000,
+              "rate": 0.33
+            },
+            {
+              "min": 18000001,
+              "max": 40000000,
+              "rate": 0.4
+            },
+            {
+              "min": 40000001,
+              "max": null,
+              "rate": 0.45
+            }
+          ]
+        },
+        {
           "id": "4b8646a4-13d5-46ad-b90d-8fdc617e8af9",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Income Tax (Effective Rate)",
           "type": "CIT",
           "rate": 31.5,
           "unit": "percent"
@@ -1176,10 +1735,84 @@
       "taxes": [
         {
           "id": "fa9cb978-fb00-452d-bafd-b5469d8d65dd",
-          "name": "Value Added Tax",
+          "name": "Goods and Services Tax (GST)",
           "type": "VAT",
           "rate": 9,
           "unit": "percent"
+        },
+        {
+          "id": "x7y8z9a0-b1c2-3x4y-5z6a-7b8c9d0e1f2g",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-24",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 20000,
+              "rate": 0
+            },
+            {
+              "min": 20001,
+              "max": 30000,
+              "rate": 0.02
+            },
+            {
+              "min": 30001,
+              "max": 40000,
+              "rate": 0.035
+            },
+            {
+              "min": 40001,
+              "max": 80000,
+              "rate": 0.07
+            },
+            {
+              "min": 80001,
+              "max": 120000,
+              "rate": 0.115
+            },
+            {
+              "min": 120001,
+              "max": 160000,
+              "rate": 0.15
+            },
+            {
+              "min": 160001,
+              "max": 200000,
+              "rate": 0.18
+            },
+            {
+              "min": 200001,
+              "max": 240000,
+              "rate": 0.19
+            },
+            {
+              "min": 240001,
+              "max": 280000,
+              "rate": 0.195
+            },
+            {
+              "min": 280001,
+              "max": 320000,
+              "rate": 0.2
+            },
+            {
+              "min": 320001,
+              "max": 500000,
+              "rate": 0.22
+            },
+            {
+              "min": 500001,
+              "max": 1000000,
+              "rate": 0.23
+            },
+            {
+              "min": 1000001,
+              "max": null,
+              "rate": 0.24
+            }
+          ]
         },
         {
           "id": "cf2d5c57-9c8a-4e60-9f4f-83719e5e61f5",
@@ -1203,17 +1836,25 @@
       "taxes": [
         {
           "id": "c70661a9-3409-43f7-b3e1-9b9d92ec2289",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
           "rate": 5,
           "unit": "percent"
         },
         {
+          "id": "y8z9a0b1-c2d3-4y5z-6a7b-8c9d0e1f2g3h",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": 0,
+          "unit": "percent"
+        },
+        {
           "id": "3fc16b4c-4021-4119-bfa4-048bb2d766a8",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Tax",
           "type": "CIT",
           "rate": 9,
-          "unit": "percent"
+          "unit": "percent",
+          "description": "0% for qualifying income up to AED 375,000."
         }
       ]
     },
@@ -1230,9 +1871,16 @@
       "taxes": [
         {
           "id": "d596dd1b-8ee5-4423-a06b-b719790c7fd6",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
           "rate": 15,
+          "unit": "percent"
+        },
+        {
+          "id": "z9a0b1c2-d3e4-5z6a-7b8c-9d0e1f2g3h4i",
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": 0,
           "unit": "percent"
         },
         {
@@ -1257,10 +1905,55 @@
       "taxes": [
         {
           "id": "68a6b274-a3b5-4136-bc0e-607eca3e6f91",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
           "rate": 18,
-          "unit": "percent"
+          "unit": "percent",
+          "description": "Increased from 17% to 18% effective January 1, 2025."
+        },
+        {
+          "id": "a0b1c2d3-e4f5-6a7b-8c9d-0e1f2g3h4i5j",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "10-50",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 84120,
+              "rate": 0.1
+            },
+            {
+              "min": 84121,
+              "max": 120720,
+              "rate": 0.14
+            },
+            {
+              "min": 120721,
+              "max": 193800,
+              "rate": 0.2
+            },
+            {
+              "min": 193801,
+              "max": 269280,
+              "rate": 0.31
+            },
+            {
+              "min": 269281,
+              "max": 560280,
+              "rate": 0.35
+            },
+            {
+              "min": 560281,
+              "max": 721560,
+              "rate": 0.47
+            },
+            {
+              "min": 721561,
+              "max": null,
+              "rate": 0.5
+            }
+          ]
         },
         {
           "id": "56b8c355-87f1-4f8d-9f45-e70527cae404",
@@ -1284,17 +1977,67 @@
       "taxes": [
         {
           "id": "7e2dc056-d753-4d4f-85d2-5c8b389b2fea",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
           "rate": 10,
           "unit": "percent"
         },
         {
+          "id": "b1c2d3e4-f5g6-7h8i-9j0k-1l2m3n4o5p6q",
+          "name": "Individual Income Tax",
+          "type": "PAYE",
+          "rate": "6-45",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 14000000,
+              "rate": 0.06
+            },
+            {
+              "min": 14000001,
+              "max": 50000000,
+              "rate": 0.15
+            },
+            {
+              "min": 50000001,
+              "max": 88000000,
+              "rate": 0.24
+            },
+            {
+              "min": 88000001,
+              "max": 150000000,
+              "rate": 0.35
+            },
+            {
+              "min": 150000001,
+              "max": 300000000,
+              "rate": 0.38
+            },
+            {
+              "min": 300000001,
+              "max": 500000000,
+              "rate": 0.4
+            },
+            {
+              "min": 500000001,
+              "max": 1000000000,
+              "rate": 0.42
+            },
+            {
+              "min": 1000000001,
+              "max": null,
+              "rate": 0.45
+            }
+          ]
+        },
+        {
           "id": "fe5c21d1-cdeb-4d3f-b698-7f1885f9d0f5",
           "name": "Corporate Income Tax",
           "type": "CIT",
-          "rate": 25,
-          "unit": "percent"
+          "rate": "10-25",
+          "unit": "percent",
+          "description": "Progressive rates: 10%, 21%, 23%, 25% plus 1% surtax from 2026."
         }
       ]
     },
@@ -1311,10 +2054,60 @@
       "taxes": [
         {
           "id": "93d684df-1ece-4e85-a38f-8656ac8c14b4",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
           "rate": 7,
-          "unit": "percent"
+          "unit": "percent",
+          "description": "Reduced rate of 7% extended until September 30, 2026."
+        },
+        {
+          "id": "c2d3e4f5-g6h7-8i9j-0k1l-2m3n4o5p6q7r",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-35",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 150000,
+              "rate": 0
+            },
+            {
+              "min": 150001,
+              "max": 300000,
+              "rate": 0.05
+            },
+            {
+              "min": 300001,
+              "max": 500000,
+              "rate": 0.1
+            },
+            {
+              "min": 500001,
+              "max": 750000,
+              "rate": 0.15
+            },
+            {
+              "min": 750001,
+              "max": 1000000,
+              "rate": 0.2
+            },
+            {
+              "min": 1000001,
+              "max": 2000000,
+              "rate": 0.25
+            },
+            {
+              "min": 2000001,
+              "max": 5000000,
+              "rate": 0.3
+            },
+            {
+              "min": 5000001,
+              "max": null,
+              "rate": 0.35
+            }
+          ]
         },
         {
           "id": "39846a8d-9b98-4841-bc45-d55b316ccd64",
@@ -1338,10 +2131,55 @@
       "taxes": [
         {
           "id": "5b398386-9a01-4a06-9e23-f79e7647cdf1",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (VAT)",
           "type": "VAT",
-          "rate": 10,
-          "unit": "percent"
+          "rate": 8,
+          "unit": "percent",
+          "description": "Temporarily reduced to 8% until December 31, 2026."
+        },
+        {
+          "id": "d3e4f5g6-h7i8-9j0k-1l2m-3n4o5p6q7r8s",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "5-35",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 60000000,
+              "rate": 0.05
+            },
+            {
+              "min": 60000001,
+              "max": 120000000,
+              "rate": 0.1
+            },
+            {
+              "min": 120000001,
+              "max": 216000000,
+              "rate": 0.15
+            },
+            {
+              "min": 216000001,
+              "max": 384000000,
+              "rate": 0.2
+            },
+            {
+              "min": 384000001,
+              "max": 624000000,
+              "rate": 0.25
+            },
+            {
+              "min": 624000001,
+              "max": 960000000,
+              "rate": 0.3
+            },
+            {
+              "min": 960000001,
+              "max": null,
+              "rate": 0.35
+            }
+          ]
         },
         {
           "id": "d8839dca-5163-486e-820f-cf29dd5d547e",
@@ -1371,10 +2209,64 @@
           "unit": "percent"
         },
         {
+          "id": "t0i1j2k3-l4m5-8t2v-7x6y-8r9s0t1u2v3w",
+          "name": "Income Tax (IRS)",
+          "type": "PAYE",
+          "rate": "12.5-48",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 8342,
+              "rate": 0.125
+            },
+            {
+              "min": 8343,
+              "max": 12108,
+              "rate": 0.167
+            },
+            {
+              "min": 12109,
+              "max": 17855,
+              "rate": 0.2
+            },
+            {
+              "min": 17856,
+              "max": 23419,
+              "rate": 0.232
+            },
+            {
+              "min": 23420,
+              "max": 29631,
+              "rate": 0.3
+            },
+            {
+              "min": 29632,
+              "max": 40167,
+              "rate": 0.327
+            },
+            {
+              "min": 40168,
+              "max": 51996,
+              "rate": 0.37
+            },
+            {
+              "min": 51997,
+              "max": 86634,
+              "rate": 0.45
+            },
+            {
+              "min": 86635,
+              "max": null,
+              "rate": 0.48
+            }
+          ]
+        },
+        {
           "id": "858d1f0a-907d-469e-ae40-aab7bc8e15e0",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Income Tax (IRC)",
           "type": "CIT",
-          "rate": 21,
+          "rate": 19,
           "unit": "percent"
         }
       ]
@@ -1396,6 +2288,45 @@
           "type": "VAT",
           "rate": 24,
           "unit": "percent"
+        },
+        {
+          "id": "w3l4m5n6-o7p8-1w5y-0a1b-1u2v3w4x5y6z",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "9-44",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 10000,
+              "rate": 0.09
+            },
+            {
+              "min": 10001,
+              "max": 20000,
+              "rate": 0.2
+            },
+            {
+              "min": 20001,
+              "max": 30000,
+              "rate": 0.26
+            },
+            {
+              "min": 30001,
+              "max": 40000,
+              "rate": 0.34
+            },
+            {
+              "min": 40001,
+              "max": 60000,
+              "rate": 0.39
+            },
+            {
+              "min": 60001,
+              "max": null,
+              "rate": 0.44
+            }
+          ]
         },
         {
           "id": "7450e7a8-fed4-4c54-bb20-c650b9420b8b",
@@ -1425,6 +2356,35 @@
           "unit": "percent"
         },
         {
+          "id": "y5n6o7p8-q9r0-3y7a-2c3d-3w4x5y6z7a8b",
+          "name": "State Income Tax",
+          "type": "PAYE",
+          "rate": "12-52",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 641200,
+              "rate": 0.1201
+            },
+            {
+              "min": 641201,
+              "max": 777900,
+              "rate": 0.1951
+            },
+            {
+              "min": 777901,
+              "max": 2592700,
+              "rate": 0.1951
+            },
+            {
+              "min": 2592701,
+              "max": null,
+              "rate": 0.2451
+            }
+          ]
+        },
+        {
           "id": "1abbaee5-fa2d-4304-a349-44e41ad67a83",
           "name": "Corporate Income Tax",
           "type": "CIT",
@@ -1452,10 +2412,44 @@
           "unit": "percent"
         },
         {
+          "id": "a7p8q9r0-s1t2-5a9c-4e5f-5y6z7a8b9c0d",
+          "name": "State Income Tax",
+          "type": "PAYE",
+          "rate": "12.6-44.2",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 22000,
+              "rate": 0.1264
+            },
+            {
+              "min": 22001,
+              "max": 52100,
+              "rate": 0.19
+            },
+            {
+              "min": 52101,
+              "max": 80000,
+              "rate": 0.3025
+            },
+            {
+              "min": 80001,
+              "max": 150000,
+              "rate": 0.34
+            },
+            {
+              "min": 150001,
+              "max": null,
+              "rate": 0.4425
+            }
+          ]
+        },
+        {
           "id": "0ddcfbbc-a0e9-4771-b57f-4c7fa8e0d225",
           "name": "Corporate Income Tax",
           "type": "CIT",
-          "rate": 22,
+          "rate": 20,
           "unit": "percent"
         }
       ]
@@ -1473,16 +2467,50 @@
       "taxes": [
         {
           "id": "1dc9a9b4-55b6-412a-b42b-ff982df35a37",
-          "name": "Value Added Tax",
+          "name": "Goods and Services Tax (GST)",
           "type": "VAT",
-          "rate": 13,
+          "rate": 5,
           "unit": "percent"
         },
         {
+          "id": "c7d8e9f0-a1b2-1c2d-3e4f-5g6h7i8j9k0l",
+          "name": "Federal Income Tax",
+          "type": "PAYE",
+          "rate": "14-33",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 58523,
+              "rate": 0.14
+            },
+            {
+              "min": 58524,
+              "max": 117045,
+              "rate": 0.205
+            },
+            {
+              "min": 117046,
+              "max": 181440,
+              "rate": 0.26
+            },
+            {
+              "min": 181441,
+              "max": 258482,
+              "rate": 0.29
+            },
+            {
+              "min": 258483,
+              "max": null,
+              "rate": 0.33
+            }
+          ]
+        },
+        {
           "id": "7e5f4a2b-ba7b-441c-97d9-9050b3bd1d33",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Income Tax (Net Federal)",
           "type": "CIT",
-          "rate": 27,
+          "rate": 15,
           "unit": "percent"
         }
       ]
@@ -1500,10 +2528,40 @@
       "taxes": [
         {
           "id": "2c1c6b42-a248-4603-a443-a473cc1f2f46",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (IVA)",
           "type": "VAT",
           "rate": 16,
           "unit": "percent"
+        },
+        {
+          "id": "m5n6o7p8-q9r0-4m8s-3t4u-5v6w7x8y9z0a",
+          "name": "Income Tax (ISR)",
+          "type": "PAYE",
+          "rate": "1.92-35",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 9400,
+              "rate": 0.0192
+            },
+            {
+              "min": 79000,
+              "max": 138000,
+              "rate": 0.1088
+            },
+            {
+              "min": 500000,
+              "max": 1000000,
+              "rate": 0.3
+            },
+            {
+              "min": 1000001,
+              "max": null,
+              "rate": 0.35
+            }
+          ],
+          "description": "Simplified brackets based on 2026 projections."
         },
         {
           "id": "98e7b690-e17e-45e9-beaa-0b2f05c0428f",
@@ -1527,14 +2585,49 @@
       "taxes": [
         {
           "id": "ba7cbbc6-ee8f-47c4-ad51-88e588df69ad",
-          "name": "Value Added Tax",
+          "name": "IBS/CBS (Dual VAT)",
           "type": "VAT",
-          "rate": 26.5,
-          "unit": "percent"
+          "rate": 1,
+          "unit": "percent",
+          "description": "Transition phase (0.9% CBS + 0.1% IBS) for 2026."
+        },
+        {
+          "id": "n1p2q3r4-s5t6-9u8v-0w1x-1y2z3a4b5c6d",
+          "name": "Personal Income Tax (IRPF)",
+          "type": "PAYE",
+          "rate": "0-27.5",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 33900,
+              "rate": 0
+            },
+            {
+              "min": 33901,
+              "max": 45000,
+              "rate": 0.075
+            },
+            {
+              "min": 45001,
+              "max": 55900,
+              "rate": 0.15
+            },
+            {
+              "min": 55901,
+              "max": 67400,
+              "rate": 0.225
+            },
+            {
+              "min": 67401,
+              "max": null,
+              "rate": 0.275
+            }
+          ]
         },
         {
           "id": "1c75a57f-b3a9-4156-92fb-4b9a6cf765a3",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Income Tax (Combined)",
           "type": "CIT",
           "rate": 34,
           "unit": "percent"
@@ -1554,17 +2647,42 @@
       "taxes": [
         {
           "id": "0a6f280e-4e84-4c57-ae52-c1a57694b52b",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (IVA)",
           "type": "VAT",
           "rate": 21,
           "unit": "percent"
         },
         {
+          "id": "q4r5s6t7-u8v9-2q0w-1e2r-3t4y5u6i7o8p",
+          "name": "Income Tax (Ganancias)",
+          "type": "PAYE",
+          "rate": "5-35",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 2000000,
+              "rate": 0.05
+            },
+            {
+              "min": 2000001,
+              "max": 5000000,
+              "rate": 0.15
+            },
+            {
+              "min": 5000001,
+              "max": null,
+              "rate": 0.35
+            }
+          ]
+        },
+        {
           "id": "5ff5dd30-aecb-4f89-8be1-1140759d56b9",
           "name": "Corporate Income Tax",
           "type": "CIT",
-          "rate": 35,
-          "unit": "percent"
+          "rate": "25-35",
+          "unit": "percent",
+          "description": "Progressive rates based on net taxable income."
         }
       ]
     },
@@ -1581,10 +2699,44 @@
       "taxes": [
         {
           "id": "891ff418-9756-4190-9b92-a9fed9dadeca",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (IVA)",
           "type": "VAT",
           "rate": 19,
           "unit": "percent"
+        },
+        {
+          "id": "r5s6t7u8-v9w0-3r1x-2y3z-4a5s6d7f8g9h",
+          "name": "Individual Income Tax",
+          "type": "PAYE",
+          "rate": "0-41",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 47000000,
+              "rate": 0
+            },
+            {
+              "min": 47000001,
+              "max": 80000000,
+              "rate": 0.19
+            },
+            {
+              "min": 80000001,
+              "max": 170000000,
+              "rate": 0.28
+            },
+            {
+              "min": 170000001,
+              "max": 350000000,
+              "rate": 0.35
+            },
+            {
+              "min": 350000001,
+              "max": null,
+              "rate": 0.41
+            }
+          ]
         },
         {
           "id": "96719f38-f2f4-4bf1-bc49-1d495dd09d03",
@@ -1608,14 +2760,58 @@
       "taxes": [
         {
           "id": "61b19a6f-9343-400e-b97f-d0ac2b706e4f",
-          "name": "Value Added Tax",
+          "name": "Value Added Tax (IVA)",
           "type": "VAT",
           "rate": 19,
           "unit": "percent"
         },
         {
+          "id": "s6t7u8v9-w0x1-4s2y-3z4a-5b6n7m8k9l0p",
+          "name": "Global Complementario (Personal Income Tax)",
+          "type": "PAYE",
+          "rate": "0-35.5",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 10500000,
+              "rate": 0
+            },
+            {
+              "min": 10500001,
+              "max": 23000000,
+              "rate": 0.04
+            },
+            {
+              "min": 23000001,
+              "max": 38000000,
+              "rate": 0.08
+            },
+            {
+              "min": 38000001,
+              "max": 54000000,
+              "rate": 0.135
+            },
+            {
+              "min": 54000001,
+              "max": 72000000,
+              "rate": 0.23
+            },
+            {
+              "min": 72000001,
+              "max": 96000000,
+              "rate": 0.304
+            },
+            {
+              "min": 96000001,
+              "max": null,
+              "rate": 0.355
+            }
+          ]
+        },
+        {
           "id": "a8d1f91b-8537-466e-9fd2-d45116a5a0a5",
-          "name": "Corporate Income Tax",
+          "name": "Corporate Income Tax (Partially Integrated)",
           "type": "CIT",
           "rate": 27,
           "unit": "percent"
@@ -1635,10 +2831,45 @@
       "taxes": [
         {
           "id": "806242d4-c431-4ec4-a041-b41c513fc1ce",
-          "name": "Value Added Tax",
+          "name": "General Sales Tax (IGV)",
           "type": "VAT",
           "rate": 18,
-          "unit": "percent"
+          "unit": "percent",
+          "description": "Comprises 14% IGV and 4% IPM starting 2026."
+        },
+        {
+          "id": "t7u8v9w0-x1y2-5t3z-4a5b-6c7d8e9f0g1h",
+          "name": "Income Tax",
+          "type": "PAYE",
+          "rate": "8-30",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 27500,
+              "rate": 0.08
+            },
+            {
+              "min": 27501,
+              "max": 110000,
+              "rate": 0.14
+            },
+            {
+              "min": 110001,
+              "max": 192500,
+              "rate": 0.17
+            },
+            {
+              "min": 192501,
+              "max": 247500,
+              "rate": 0.2
+            },
+            {
+              "min": 247501,
+              "max": null,
+              "rate": 0.3
+            }
+          ]
         },
         {
           "id": "6fcaa507-b289-4c9e-bb4d-ff2db757904f",
@@ -1655,24 +2886,62 @@
       "currency": "AUD",
       "continent": "Oceania",
       "essentialInfo": {
-        "fiscalYear": "January to December",
-        "taxAuthority": "National Revenue Authority",
-        "filingDeadline": "Variable"
+        "fiscalYear": "July to June",
+        "taxAuthority": "Australian Taxation Office (ATO)",
+        "filingDeadline": "October 31"
       },
       "taxes": [
         {
-          "id": "4603e8e7-3d71-49f4-b368-db00211dcc1c",
-          "name": "Value Added Tax",
+          "id": "e4f5g6h7-i8j9-0k1l-2m3n-4o5p6q7r8s9t",
+          "name": "Goods and Services Tax (GST)",
           "type": "VAT",
           "rate": 10,
           "unit": "percent"
         },
         {
-          "id": "5265c987-0aa6-4e95-8050-4ecfc7dbe8d3",
+          "id": "f5g6h7i8-j9k0-1l2m-3n4o-5p6q7r8s9t0u",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "0-45",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 18200,
+              "rate": 0,
+              "label": "Tax-free threshold"
+            },
+            {
+              "min": 18201,
+              "max": 45000,
+              "rate": 0.16,
+              "label": "16% rate (FY 2025-26)"
+            },
+            {
+              "min": 45001,
+              "max": 135000,
+              "rate": 0.3
+            },
+            {
+              "min": 135001,
+              "max": 190000,
+              "rate": 0.37
+            },
+            {
+              "min": 190001,
+              "max": null,
+              "rate": 0.45
+            }
+          ],
+          "description": "Excludes 2% Medicare Levy."
+        },
+        {
+          "id": "76620ca9-3cb9-4c57-8106-9bd6814bb289",
           "name": "Corporate Income Tax",
           "type": "CIT",
-          "rate": 30,
-          "unit": "percent"
+          "rate": 25,
+          "unit": "percent",
+          "description": "25% for base rate entities, 30% for others."
         }
       ]
     },
@@ -1682,20 +2951,54 @@
       "currency": "NZD",
       "continent": "Oceania",
       "essentialInfo": {
-        "fiscalYear": "January to December",
-        "taxAuthority": "National Revenue Authority",
-        "filingDeadline": "Variable"
+        "fiscalYear": "April to March",
+        "taxAuthority": "Inland Revenue Department (IRD)",
+        "filingDeadline": "July 7"
       },
       "taxes": [
         {
-          "id": "9f70631a-21fd-43ff-ab7b-3aed352c6617",
-          "name": "Value Added Tax",
+          "id": "g6h7i8j9-k0l1-2m3n-4o5p-6q7r8s9t0u1v",
+          "name": "Goods and Services Tax (GST)",
           "type": "VAT",
           "rate": 15,
           "unit": "percent"
         },
         {
-          "id": "928a2cb6-fc30-4fef-ba10-ed524c82343c",
+          "id": "h7i8j9k0-l1m2-3n4o-5p6q-7r8s9t0u1v2w",
+          "name": "Personal Income Tax",
+          "type": "PAYE",
+          "rate": "10.5-39",
+          "unit": "percent",
+          "bands": [
+            {
+              "min": 0,
+              "max": 15600,
+              "rate": 0.105
+            },
+            {
+              "min": 15601,
+              "max": 53500,
+              "rate": 0.175
+            },
+            {
+              "min": 53501,
+              "max": 78100,
+              "rate": 0.3
+            },
+            {
+              "min": 78101,
+              "max": 180000,
+              "rate": 0.33
+            },
+            {
+              "min": 180001,
+              "max": null,
+              "rate": 0.39
+            }
+          ]
+        },
+        {
+          "id": "67cb2a6b-c73d-425b-ae0e-6f81b16ee91e",
           "name": "Corporate Income Tax",
           "type": "CIT",
           "rate": 28,
@@ -1705,7 +3008,7 @@
     }
   ],
   "meta": {
-    "lastUpdated": "2026-03-14",
-    "version": "2.0.0"
+    "version": "2.3.0",
+    "lastUpdated": "2026-03-17"
   }
 }
